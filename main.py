@@ -1,4 +1,5 @@
 import argparse
+import base64
 import requests
 from bs4 import BeautifulSoup
 import re
@@ -20,7 +21,9 @@ logging.basicConfig(
 
 # --- URL常量 ---
 # 定义所有需要用到的URL，方便管理和修改
-BASE_URL = "https://client.vpn.nuist.edu.cn/http/webvpnf798bff316e8cb600a95f8a16f827ac1"
+# <校园网网关基址，Base64编码存放>
+BASE_URL_B64 = "aHR0cHM6Ly9jbGllbnQudnBuLm51aXN0LmVkdS5jbi9odHRwL3dlYnZwbmY3OThiZmYzMTZlOGNiNjAwYTk1ZjhhMTZmODI3YWMx"
+BASE_URL = base64.b64decode(BASE_URL_B64).decode('utf-8')
 PERSONAL_INFO_URL = f"{BASE_URL}/chosen/redirect/chosen/personal"
 SELECT_BEDS_URL = f"{BASE_URL}/chosen/redirect/chosen/selectBeds"
 FLOOR_SHOW_API_URL = f"{BASE_URL}/chosen/api/v2/chosen/student/floorShow"
